@@ -14,10 +14,11 @@ function App() {
   return (
     <BrowserRouter>
 
-      <div className = "flex flex-col justify-center items-center border w-full" >
+      <div className = "flex flex-col justify-center items-center border w-full h-screen gap-y-5" >
 
         <Menu/>
 
+        <div className="flex-grow">
         <Routes>
 
           <Route path="/home" element={< Homepage />}></Route>
@@ -29,6 +30,7 @@ function App() {
           <Route path="/topic/:topic_id" element={< Topic />}></Route>
           
         </Routes>
+        </div>
 
       </div>
 
