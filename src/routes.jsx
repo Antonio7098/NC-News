@@ -1,9 +1,14 @@
 import axios from "axios"
 
 const ncNewsApi = axios.create({
-    BaseURL: "https://nc-news-q3ya.onrender.com/api"
+    baseURL: "https://nc-news-q3ya.onrender.com/api"
 })
 
 export function getArticles() {
-    ncNewsApi.get("/articles").then((articles)=> console.log(articles.data))
+    ncNewsApi.get("/articles", {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then((articles)=> console.log(articles.data)).catch(console.log)
 }

@@ -5,10 +5,10 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), require('@tailwindcss/line-clamp')],
+  plugins: [react(), tailwindcss()],
   server: {
     proxy: {
-      '/api': 'https://nc-news-q3ya.onrender.com/api', // or wherever your backend runs
+      '/api': 'https://nc-news-q3ya.onrender.com/api', 
     },
   },
 })
