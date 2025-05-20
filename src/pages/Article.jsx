@@ -16,6 +16,8 @@ export default function Article({username}) {
 
     }, [])
 
+    console.log(article)
+
     function handleVote() {
         setArticle(oldArticle => ({ ...oldArticle, votes: oldArticle.votes + 1 }))
         return vote(articleId, setArticle).catch(() => setArticle(oldArticle => ({ ...oldArticle, votes: oldArticle.votes - 1 })))
