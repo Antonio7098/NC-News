@@ -1,16 +1,11 @@
-import {Header} from "../components" 
+import { Header, SearchBar } from "../components" 
 import {useState, useEffect, use} from "react"
 import {MenuIcon} from "./"
 import { getTopics } from "../axiosRoutes"
 import { Link } from "react-router-dom"
 
-export default function Menu() {
+export default function Menu({topics}) {
     const [open, setOpen] = useState(false)
-    const [topics, setTopics] = useState([])
-
-    useEffect(() => {
-        getTopics(setTopics)
-    }, [])
 
     return (
         <div className="relative flex flex-col w-full">
@@ -40,6 +35,9 @@ export default function Menu() {
                     <ul>
                         <Link to="/home" onClick={() => setOpen(false)}>
                             <li>Home</li>
+                        </Link>
+                        <Link to="/articles" onClick={() => setOpen(false)}>
+                            <li>All articles</li>
                         </Link>
 
                     </ul>
