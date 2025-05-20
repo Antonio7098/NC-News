@@ -42,3 +42,11 @@ export function postComment({article_id: articleId, author: username, body}) {
     "body": body
   }).then(({data: {comment}}) => console.log(comment))
 }
+
+export function getTopics(fn) {
+  if (!fn) {
+    fn = (articles) => articles
+  }
+  ncNewsApi.get("/topics", {})
+    .then(({data: {topics}}) => fn(topics))
+}

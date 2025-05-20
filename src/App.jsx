@@ -34,7 +34,7 @@ function App() {
 
           <Route path="/search" element={< Search />}></Route>
 
-          <Route path="/topic/:topic_id" element={< Topic />}></Route>
+          <Route path="/topic/:slug" element={< Topic articles={articles}/>}></Route>
           
         </Routes>
         </div>

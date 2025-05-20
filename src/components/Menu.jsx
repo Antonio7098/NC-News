@@ -1,9 +1,17 @@
 import {Header} from "../components" 
-import {useState, useEffect} from "react"
+import {useState, useEffect, use} from "react"
 import {MenuIcon} from "./"
+import { getTopics } from "../axiosRoutes"
+import { Link } from "react-router-dom"
 
 export default function Menu() {
     const [open, setOpen] = useState(false)
+    const [topics, setTopics] = useState([])
+
+    useEffect(() => {
+        getTopics(setTopics)
+    }, [])
+
     return (
         <div className="relative flex flex-col w-full">
 
@@ -25,8 +33,22 @@ export default function Menu() {
             </div>
 
             {open && (
-                <div className="border flex justify-center fixed top-16 left-0 w-2/3 h-screen bg-white shadow-lg z-50">
-                    <h1 className="text-[1.3rem] margin-top-5">Menu</h1>
+                <div className="border flex flex-col items-start fixed top-16 left-0 w-2/3 h-screen bg-white shadow-lg z-50">
+
+                    <h1 className="text-[1.3rem] margin-top-5 self-center">Menu</h1>
+
+                    <ul>
+                        <Link to="/home" onClick={() => setOpen(false)}>
+                            <li>Home</li>
+                        </Link>
+
+                    </ul>
+
+                    <div></div>
+
+                    <ul>
+                        { topics.map((topic) => <Link to={`/topic/${topic.slug}`} onClick={() => setOpen(false)}> <li>{ topic.slug} </li> </Link> )}
+                    </ul>
                 </div>
             )}
 
