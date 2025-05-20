@@ -40,7 +40,7 @@ function App() {
   }
 
   const articles = data.data.articles
-  console.log(articles)
+  
   return (
     <BrowserRouter>
 

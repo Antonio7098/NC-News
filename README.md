@@ -1,8 +1,7 @@
 # NC News Frontend #
 A frontend web application for browsing articles, filtering by topic, and sorting by various criteria — built as part of a Digital Skills Bootcamp in Software Engineering at Northcoders . 
-
-Live Demo: 
-...
+ 
+[Live Demo](https://682c9d9d2600c70091c8b5f5--nc-news-ant.netlify.app)
 
 ## About the Project ##
 This is the frontend for the NC News application, which connects to a RESTful API backend that serves news articles, topics, and user comments.
@@ -25,7 +24,7 @@ You can view all articles related to a specific topic by visiting:
 
 
 ## Backend Repository ##
-Backend GitHub Repository: https://github.com/Antonio7098/nc_news
+[Backend GitHub Repository](https://github.com/Antonio7098/nc_news)
 
 ## Minimum Node Version ##
 Node.js version: v18.x or higher
