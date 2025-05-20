@@ -1,12 +1,61 @@
-# React + Vite
+# NC News Frontend #
+A frontend web application for browsing articles, filtering by topic, and sorting by various criteria — built as part of a Digital Skills Bootcamp in Software Engineering at Northcoders . 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Demo: 
+...
 
-Currently, two official plugins are available:
+## About the Project ##
+This is the frontend for the NC News application, which connects to a RESTful API backend that serves news articles, topics, and user comments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features ##
+* Browse articles
+* Filter articles by topic
+* Sort articles by date, title, votes, or comment count
+* View individual article details
+* Search functionality
+* Add a comment
 
-## Expanding the ESLint configuration
+## The app uses: ##
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React
+React Router v6
+Axios for API requests
+Tailwind CSS for styling
+You can view all articles related to a specific topic by visiting:
+
+
+## Backend Repository ##
+Backend GitHub Repository: https://github.com/Antonio7098/nc_news
+
+## Minimum Node Version ##
+Node.js version: v18.x or higher
+
+## How to Run Locally ##
+Clone the repository
+
+git clone https://github.com/Antonio7098/NC-News.git
+
+Navigate into the project folder
+
+cd NC-News
+
+Install dependencies
+
+npm install
+
+Start the development server
+
+npm run dev
+
+Open http://localhost:3000 in your browser
+
+Try navigating to /topic/coding or /topic/football to see filtered articles!
+
+## Technologies Used ##
+* React
+* React Router
+* Axios
+* Tailwind CSS
+
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
