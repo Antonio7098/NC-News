@@ -29,3 +29,7 @@ export function getComments(articleId, fn) {
   }
   return ncNewsApi.get(`/articles/${articleId}/comments`).then(({data:{comments}})=> fn(comments) )
 }
+
+export function vote(articleId, fn) {
+  return ncNewsApi.patch(`/articles/${articleId}`, {inc_votes: 1}).then(({data: {article}}) => fn(article))
+}
