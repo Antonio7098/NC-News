@@ -11,6 +11,7 @@ function App() {
   const [loading, setloading] = useState(true)
   const [topics, setTopics] = useState([])
   const [articles, setArticles] = useState([])
+  const [username, setUsername] = useState("tickle122")
 
   useEffect(()=> {
     getArticles(setArticles)
@@ -29,11 +30,11 @@ function App() {
 
           <Route path="/home" element={< Homepage articles={articles}/>}></Route>
 
-          <Route path="/articles/:article_id" element={< Article />}></Route>
+          <Route path="/articles/:article_id" element={< Article username={username} />}></Route>
 
           <Route path="/search" element={< Search />}></Route>
 
-          <Route path="/topic/:topic_id" element={< Topic />}></Route>
+          <Route path="/topic/:slug" element={< Topic articles={articles}/>}></Route>
           
         </Routes>
         </div>
