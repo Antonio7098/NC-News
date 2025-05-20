@@ -1,5 +1,5 @@
 import {Header} from "../components" 
-import { getArticles } from "../routes"
+import { getArticles } from "../axiosRoutes"
 import {ArticlesDisplay} from "../components"
 
 export default function Homepage({articles}) {

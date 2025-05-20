@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Homepage, Article, Search, Topic } from './pages';
 import { Menu } from './components';
-import { getArticles } from './routes';
+import { getArticles } from './axiosRoutes';
 import articleList from './articles';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   const [articles, setArticles] = useState([])
 
   useEffect(()=> {
-    setArticles(articleList)
+    getArticles(setArticles)
   }, [])
 
 

@@ -11,7 +11,7 @@ export default function ArticlesDisplay({title, articles}) {
 
             <div className="grid flex-col gap-4 overflow-hidden">
 
-                {articles.map((article) => <ArticleCard article={article}/>)}
+                {articles.map((article) => <ArticleCard key={article.article_id} article={article}/>)}
 
             </div>  
             
