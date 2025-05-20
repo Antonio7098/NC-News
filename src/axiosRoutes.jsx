@@ -4,19 +4,11 @@ const ncNewsApi = axios.create({
     baseURL: "https://nc-news-q3ya.onrender.com/api"
 })
 
-export function getArticles(queries, fn) {
-  if (!fn) {
-    fn = (articles) => articles;
-  }
-
+export function getArticles(queries) {
   const params = queries || {};
 
-  ncNewsApi
+  return ncNewsApi
     .get("/articles", { params })
-    .then(({ data }) => {
-      fn(data.articles);
-    })
-    .catch(console.log)
 }
 
 export function getArticle(articleId, fn) {
