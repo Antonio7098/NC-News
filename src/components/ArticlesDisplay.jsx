@@ -1,20 +1,28 @@
-import {ArticleCard} from "./"
+import { ArticleCard } from "./";
 
-export default function ArticlesDisplay({title, articles}) {
-    return (
-        <div className=" rounded-md w-full border flex gap-2 flex-col overflow-hidden shadow-md">
+export default function ArticlesDisplay({ title, articles }) {
+  if (!articles || articles.length === 0) {
+    return <p className="text-center text-slate-500 mt-8">No articles to display.</p>;
+  }
 
-            {/* Title */}
-            {articles ? <div className="bg-black text-white text-sm font-semibold px-2 py-1">
-                <h1>{title}</h1>
-            </div> : null}
+  return (
+    <section className="w-full">
 
-            <div className="grid flex-col gap-4 w-full overflow-hidden">
-
-                {articles.map((article) => <ArticleCard key={article.article_id} article={article}/>)}
-
-            </div>  
-            
+      {title && (
+        <div className="border-b  w-11/12 mx-auto border-slate-300 mb-4">
+            <h1 className="text-3xl text-slate-900">
+              {title}
+            </h1>
         </div>
-    )
+      )}
+
+      {/* --- 2. The Card Container --- */}
+      <div className="flex flex-col gap-5 w-11/12 mx-auto">
+        {articles.map((article) => (
+          <ArticleCard key={article.article_id} article={article} />
+        ))}
+      </div>
+
+    </section>
+  );
 }

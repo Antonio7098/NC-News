@@ -6,6 +6,7 @@ const ncNewsApi = axios.create({
 
 export function getArticles(queries) {
   const params = queries || {};
+  console.log(params)
 
   return ncNewsApi
     .get("/articles", { params })
@@ -15,20 +16,19 @@ export function getArticle(articleId, fn) {
   if (!fn) {
     fn = (article) => article
   }
-  return ncNewsApi.get(`/articles/${articleId}`).then(({data:{article}})=>fn(article))
+  return ncNewsApi.get(`/articles/${articleId}`).then(({data:{article}})=>article)
 }
 
 export function getComments(articleId, fn) {
   if (!fn) {
     fn = (article) => article
   }
-  return ncNewsApi.get(`/articles/${articleId}/comments`).then(({data:{comments}})=> fn(comments) )
+  return ncNewsApi.get(`/articles/${articleId}/comments`).then(({data:{comments}})=> comments )
 }
 
-export function vote(articleId, fn) {
-  return ncNewsApi.patch(`/articles/${articleId}`, {inc_votes: 1})
-    .then(({data: {article}}) => fn(article))
-}
+export function vote(article_id, increment) {
+  return ncNewsApi.patch(`/articles/${article_id}`, { inc_votes: increment });
+};
 
 export function postComment({article_id: articleId, author: username, body}) {
   console.log('Posting comment with:', { articleId, username, body });
