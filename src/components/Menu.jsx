@@ -1,55 +1,77 @@
-import { Header, SearchBar } from "../components" 
-import {useState, useEffect, use} from "react"
-import {MenuIcon} from "./"
-import { getTopics } from "../axiosRoutes"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Menu as MenuIcon, X as XIcon } from 'lucide-react';
+import { Link, NavLink } from "react-router-dom";
 
-export default function Menu({topics}) {
-    const [open, setOpen] = useState(false)
+export default function Menu({ topics }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-    return (
-        <div className="relative flex flex-col w-full">
+  if (isOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
 
-            <div className="relative flex items-center border w-full h-16">   
+  return (
+    <>
+      <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-200 z-40">
+        <div className="relative flex items-center justify-between h-16 px-4 sm:px-6">
 
-                <div className="flex-grow flex justify-start pl-4">
-                    <button onClick={() => setOpen(old => !old)}>
-                        <MenuIcon />
-                    </button>
-                </div>
+          <button onClick={() => setIsOpen(!isOpen)} className="p-2 z-50">
+            {isOpen ? <XIcon className="h-6 w-6" /> : <MenuIcon className="h-6 w-6" />}
+          </button>
+          
+          <Link to="/home" className="absolute left-1/2 -translate-x-1/2">
+            <h1 className="text-2xl font-extrabold tracking-tight">
+              <span className="text-red-600">NC</span>
+              <span className="text-slate-900">News</span>
+            </h1>
+          </Link>
 
-                <Header
-                    className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
-                    text="NC News"
-                />
-
-                <div className="flex-grow"></div>
-
-            </div>
-
-            {open && (
-                <div className="border flex flex-col items-start fixed top-16 left-0 w-2/3 h-screen bg-white shadow-lg z-50">
-
-                    <h1 className="text-[1.3rem] margin-top-5 self-center">Menu</h1>
-
-                    <ul>
-                        <Link to="/home" onClick={() => setOpen(false)}>
-                            <li>Home</li>
-                        </Link>
-                        <Link to="/articles" onClick={() => setOpen(false)}>
-                            <li>All articles</li>
-                        </Link>
-
-                    </ul>
-
-                    <div></div>
-
-                    <ul>
-                        { topics.map((topic) => <Link to={`/topic/${topic.slug}`} onClick={() => setOpen(false)}> <li>{ topic.slug} </li> </Link> )}
-                    </ul>
-                </div>
-            )}
+          <div className="w-8"></div>
 
         </div>
-    )
+      </header>
+      
+      <div 
+        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-white shadow-xl z-50
+                    transition-transform duration-300 ease-in-out
+                    ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+      >
+        <div className="p-6 flex flex-col gap-y-8">
+          
+          <div>
+            <h3 className="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-3">Navigation</h3>
+            <ul className="flex flex-col gap-y-1">
+              <li>
+                <NavLink to="/home" onClick={() => setIsOpen(false)} className={({isActive}) => `block px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'}`}>
+                    Home
+                </NavLink>
+              </li>
+              <li>
+                <Link to="/articles" onClick={() => setIsOpen(false)} className={({isActive}) => `block px-3 py-2 rounded-md text-base font-medium transition-colors ${isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'}`}>
+                  Search
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <hr/>
+
+          <div>
+            <h3 className="text-xs font-semibold uppercase text-slate-400 tracking-wider mb-3">Topics</h3>
+            <ul className="flex flex-col gap-y-1">
+              {topics.map((topic) => (
+                <li key={topic.slug}>
+                  <Link to={`/topics/${topic.slug}`} onClick={() => setIsOpen(false)} className={({isActive}) => `block px-3 py-2 rounded-md text-base font-medium capitalize transition-colors ${isActive ? 'bg-slate-100 text-slate-900' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'}`}>
+                    {topic.slug}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </>
+  );
 }

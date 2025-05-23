@@ -1,31 +1,33 @@
-import { ThumbsUp, MessageCircle } from 'lucide-react';
+import { ThumbsUp } from 'lucide-react';
 
-export default function CommentCard( {comment: {comment_id, article_id, body, votes, author, created_at}} ) {
-    return (
-    <div className="border rounded-md flex flex-col overflow-hidden shadow-md">
+export default function CommentCard({ comment: { body, votes, author, created_at } }) {
 
-            {/* Title */}
-            <div className="bg-black text-white text-sm font-semibold px-2 py-1">
-                <h1>{author}</h1>
-            </div>
+  const formattedDate = new Date(created_at).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
 
-            {/* Contents */}
-            <p className="flex-grow" > {body} </p>
+  return (
 
-            <div className="flex flex-grow ">
+    <div className="bg-white border border-slate-200 rounded-xl shadow-md p-4 flex flex-col gap-3">
+      
 
-                {/* Votes */}
-                <div className="flex flex-col justify-center items-center flex-grow">
-                    <div>
-                        < ThumbsUp />
-                    </div>
-                    <div>
-                        {votes}
-                    </div>
-                </div>
+      <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+        <p className="font-bold text-slate-800">{author}</p>
+        <p className="text-xs text-slate-500">{formattedDate}</p>
+      </div>
 
-            </div>  
-            
+      <p className="text-slate-700 leading-relaxed">
+        {body}
+      </p>
+
+      <div className="flex justify-end items-center mt-2">
+        <div className="flex items-center gap-1.5 text-sm text-slate-600 font-medium">
+          <ThumbsUp className="w-4 h-4 text-slate-400" />
+          <span>{votes}</span>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

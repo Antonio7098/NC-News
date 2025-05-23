@@ -1,49 +1,42 @@
 import { ThumbsUp, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function ArticleCard({article: {title, body, article_img_url: img, votes, comment_count, article_id}}) {
-    return (
-        <Link to={`/articles/${article_id}`}>
-            <div className="border rounded-md flex flex-col overflow-hidden shadow-md">
+export default function ArticleCard({ article: { title, article_img_url: img, votes, comment_count, article_id } }) {
+  return (
 
-                {/* Title */}
-                <div className="bg-black text-white text-sm font-semibold px-2 py-1">
-                    <h1>{title}</h1>
-                </div>
+    <Link to={`/articles/${article_id}`} className="block w-full group">
+      <div className="flex bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden 
+                      transition-all duration-300 ease-in-out
+                      hover:shadow-lg hover:-translate-y-1">
+        
+        {/* Left side: Image Area */}
+        <div className="w-32 flex-shrink-0">
+          <img 
+            className="w-full h-full object-cover" 
+            src={img}
+            alt={`Cover image for ${title}`}
+          />
+        </div>
 
-                <div className="flex flex-grow ">
+        {/* Right side: Content Area */}
+        <div className="p-4 flex flex-col flex-1">
+          <h2 className="font-bold text-lg text-slate-800 line-clamp-2 leading-tight
+                         transition-colors group-hover:text-indigo-600">
+            {title}
+          </h2>
 
-                    {/* Votes */}
-                    <div className="flex flex-col justify-center items-center flex-grow">
-                        <div>
-                            < ThumbsUp />
-                        </div>
-                        <div>
-                            {votes}
-                        </div>
-                    </div>
-
-                    {/* Comments */}
-                    <div className="flex flex-col justify-center items-center flex-grow">
-                        <div>
-                            < MessageCircle />
-                        </div>
-                        <div>
-                            {comment_count}
-                        </div>
-                    </div>
-
-                    {/* Image */}
-                    <div className="w-24 flex-shrink-0 h-full overflow-hidden">
-                        <img 
-                            className="w-full h-full object-cover" 
-                            src={img}
-                        />
-                    </div>
-
-                </div>  
-                
+          <div className="flex items-center gap-x-5 text-sm text-slate-500 mt-auto pt-2">
+            <div className="flex items-center gap-1.5">
+              <ThumbsUp className="w-4 h-4 text-slate-400" />
+              <span className="font-medium">{votes}</span>
             </div>
-        </Link>
-    )
+            <div className="flex items-center gap-1.5">
+              <MessageCircle className="w-4 h-4 text-slate-400" />
+              <span className="font-medium">{comment_count}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+  )
 }
